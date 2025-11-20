@@ -23,9 +23,11 @@ struct NoListView: View {
                         .font(.headline)
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
-                        .background(animate ? Color("newColor") : Color.accent)
+                        .background(animate ? Color("NewColor") : Color.color)
                         .cornerRadius(15)
-                })
+                }).padding(.horizontal, animate ? 30 : 50)
+                    .shadow(color: animate ? Color("NewColor").opacity(0.7) : Color.color.opacity(0.7), radius: animate ? 30:50, x: 0, y: animate ? 50 : 30)
+                    .offset(y: animate ? -7 : 0)
                 
             }.multilineTextAlignment(.center)
                 .padding()
@@ -34,7 +36,7 @@ struct NoListView: View {
     }
     func addAnimation(){
         guard !animate else{return}
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             withAnimation(Animation
                 .easeInOut(duration: 2.0)
                 .repeatForever()
